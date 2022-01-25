@@ -1,6 +1,9 @@
+import { Fragment, useState } from "react";
+
 function Base64Converter() {
   const base64 = "base64";
   const utf8 = "utf-8";
+  const [value, setValue] = useState("");
 
   function encode(value) {
     return Buffer.from(value).toString(base64);
@@ -11,9 +14,14 @@ function Base64Converter() {
   }
 
   return (
-    <div>
-      {encode("test")} Base64Converter {decode("dGVzdA==")}
-    </div>
+    <Fragment>
+      <input
+        type="text"
+        name="name"
+        onChange={(e) => setValue(encode(e.target.value))}
+      />
+      Base64Converter {value} {decode(value)}
+    </Fragment>
   );
 }
 
